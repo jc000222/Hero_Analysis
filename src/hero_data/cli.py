@@ -15,7 +15,7 @@ def main():
 
     while True:
         print("-----------------------------------")
-        print("(1)Part 1: Data summary\n(2)Part 2: EDA\n(3)Inference")
+        print("(1)Part 1: Data summary\n(2)Part 2: EDA\n(3)clean\n(4)Inference")
         print("(0)Exit")
         choice = input("Enter your choice: ")
 
@@ -23,6 +23,10 @@ def main():
             Datasummary()
         elif choice == "2":
             EDA()
+        elif choice == "3":
+            clean()
+        elif choice == "4":
+            Inf()
         elif choice == "0":
             print("Exiting...")
             break
@@ -39,9 +43,10 @@ def Datasummary():
     reader_comic = Reader(data_url)
     df_comic_raw = reader_comic.combiner()
     print(df_comic_raw.head())
-
-    data = input("Enter the csv: ")
-
+    while 1:
+        data = input("Enter the csv: (input 0 to skip)")
+        if data == "0":
+            break
     reader_movie = Reader(data)
     df_movie_raw = reader_movie.reader()
     print(df_movie_raw.head())
@@ -63,14 +68,19 @@ def EDA():
         choice = input("enter chart type:1bar, 2bar horizon, 3hist, 4line")
         if choice == "1":
             eda_comics.bar_chart(column)
+            break
         elif choice == "2":
             eda_comics.barh_chart(column)
+            break
         elif choice == "3":
             eda_comics.hist_chart(column)
+            break
         elif choice == "4":
             eda_comics.line_chart(column)
+            break
         elif choice == "0":
             print("Exiting...")
+            break
 
 
 def clean():
