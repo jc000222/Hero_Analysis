@@ -62,13 +62,13 @@ def EDA():
         print(df_comic_raw[column].describe())
         choice = input("enter chart type:1bar, 2bar horizon, 3hist, 4line")
         if choice == "1":
-            eda_comics.bar_chart()
+            eda_comics.bar_chart(column)
         elif choice == "2":
-            eda_comics.barh_chart()
+            eda_comics.barh_chart(column)
         elif choice == "3":
-            eda_comics.hist_chart()
+            eda_comics.hist_chart(column)
         elif choice == "4":
-            eda_comics.line_chart()
+            eda_comics.line_chart(column)
         elif choice == "0":
             print("Exiting...")
 

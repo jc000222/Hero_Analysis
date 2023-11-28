@@ -1,3 +1,4 @@
+"""This python file do the inference work for hero analysis"""
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -5,39 +6,12 @@ import seaborn as sns
 
 class Analysis:
     def __init__(self, df):
-        self.df = df
+        """
+        Initialize the Clean class with a DataFrame.
 
-    import pandas as pd
-
-
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-
-class Analysis:
-    def __init__(self, df):
-        self.df = df
-
-    import pandas as pd
-
-
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-
-class Analysis:
-    def __init__(self, df):
-        self.df = df
-
-    import pandas as pd
-
-
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-
-class Analysis:
-    def __init__(self, df):
+        Args:
+        - df (DataFrame): Input DataFrame to be cleaned.
+        """
         self.df = df
 
     def genre_analysis(self):
@@ -135,7 +109,7 @@ class Analysis:
         # We create a cross table
         filtered_df = self.df[self.df["SEX"] != "Unknown"]
 
-        AS = pd.crosstab(index=self.df["ALIGN"], columns=filtered_df["SEX"])
+        AS = pd.crosstab(index=self.df["ALIGN"], columns=self.df["SEX"])
 
         # Adding a column with the total
         AS["Total"] = AS.sum(axis=1)
