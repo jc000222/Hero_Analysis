@@ -19,15 +19,13 @@ dependencies = [
     "matplotlib>=3.3",
     "numpy>=1.20",
     "pandas>=1.4",
-    "scipy>=1.10.0",
-    "tqdm>=4.64.1"
+    "seaborn>=0.13.0"
 ]
 dynamic = ["version"]
 
 [project.urls]
 Repository = "https://github.com/jc000222/Hero_Analysis.git"
-Reference = "https://apexlegendsstatus.com/"
 
 [tool.setuptools.packages.find]
 where = ["src",
-        "src.apex_analysis_package"]
+        "src.hero_analysis_package"]

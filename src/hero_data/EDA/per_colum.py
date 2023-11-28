@@ -6,9 +6,24 @@ import seaborn as sns
 
 class EDA_per_column:
     def __init__(self, df):
+        """
+        Initialize EDA_per_column class with a DataFrame.
+
+        Args:
+        - df (DataFrame): Input DataFrame for analysis.
+        """
         self.df = df
 
     def cat_percentage(self, column):
+        """
+        Calculate the percentage distribution of categorical values in a column.
+
+        Args:
+        - column (str): Column name in the DataFrame.
+
+        Returns:
+        - Percentage distribution of categorical values in the column.
+        """
         obj = round(
             self.df[column].value_counts() / self.df[column].value_counts().sum() * 100,
             2,
@@ -16,6 +31,13 @@ class EDA_per_column:
         return obj
 
     def bar_chart(self, column):
+        """
+        Create a bar chart showing the frequency distribution of a column using Matplotlib and Seaborn.
+
+        Args:
+        - column (str): Column name in the DataFrame.
+        """
+
         # Create the value counts
         value_counts = self.df[column].value_counts()
 
@@ -60,6 +82,12 @@ class EDA_per_column:
         plt.show()
 
     def barh_chart(self, column):
+        """
+        Create a horizontal bar chart showing the frequency distribution of a column using Matplotlib and Seaborn.
+
+        Args:
+        - column (str): Column name in the DataFrame.
+        """
         # Create the value counts
         value_counts = self.df[column].value_counts()
 
@@ -95,13 +123,18 @@ class EDA_per_column:
         plt.show()
 
     def hist_chart(self, column):
+        """
+        Create a histogram displaying the distribution of a numerical column using Matplotlib and Seaborn.
+
+        Args:
+        - column (str): Column name in the DataFrame.
+        """
         # Create a figure with two subplots
         _, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
 
         # Original Matplotlib histogram plot
-        hist, bins, _ = ax1.hist(self.df[column], bins=10)
+        hist, bins, _ = ax1.hist(self.df[column], bins=10, edgecolor="black")
         ax1.set_title(f"Histogram of {column} (Matplotlib)")
-        ax1.set_xlabel("Frequency")
 
         # Adding labels to the bars for Matplotlib
         for i in range(len(hist)):
@@ -110,7 +143,6 @@ class EDA_per_column:
         # Seaborn histogram plot
         sns.histplot(data=self.df, x=column, bins=10, kde=False, ax=ax2)
         ax2.set_title(f"Histogram of {column} (Seaborn)")
-        ax2.set_xlabel("Frequency")
         for i in range(len(hist)):
             ax2.text(
                 bins[i] + 0.5,
@@ -125,6 +157,12 @@ class EDA_per_column:
         plt.show()
 
     def line_chart(self, column):
+        """
+        Create a line plot showing the frequency distribution of a column using Matplotlib and Seaborn.
+
+        Args:
+        - column (str): Column name in the DataFrame.
+        """
         # Create the value counts
         value_counts = self.df[column].value_counts().sort_index()
 
@@ -140,6 +178,31 @@ class EDA_per_column:
         # Seaborn line plot
         sns.lineplot(x=value_counts.index, y=value_counts.values, ax=ax2)
         ax2.set_title(f"Line Plot of {column} (Seaborn)")
+        ax2.set_xlabel(column)
+        ax2.set_ylabel("Frequency")
+
+        plt.tight_layout()
+        plt.show()
+
+    def boxplot_chart(self, column):
+        """
+        Create a box plot to visualize the distribution of a column using Matplotlib and Seaborn.
+
+        Args:
+        - column (str): Column name in the DataFrame.
+        """
+        # Create a figure with two subplots
+        _, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
+
+        # Original Matplotlib box plot
+        ax1.boxplot(self.df[column])
+        ax1.set_title(f"Box Plot of {column} (Matplotlib)")
+        ax1.set_xlabel(column)
+        ax1.set_ylabel("Frequency")
+
+        # Seaborn box plot
+        sns.boxplot(data=self.df, x=column, ax=ax2)
+        ax2.set_title(f"Box Plot of {column} (Seaborn)")
         ax2.set_xlabel(column)
         ax2.set_ylabel("Frequency")
 
