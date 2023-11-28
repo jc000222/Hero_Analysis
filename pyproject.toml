@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Hero_analysis"
+authors = [
+    {name = "Ruoyu Chen", email = "rchen2@mail.yu.edu"}
+]
+maintainers = [
+    {name = "Ruoyu Chen", email = "rchen2@mail.yu.edu"},
+]
+description = "Hero analysis: project 1 & 3 for Analytics Programming"
+readme = "README.md"
+keywords = ["data visualization", "Hero", "Analytics Programming"]
+license = {text = "MIT License"}
+requires-python = ">=3.10"
+dependencies = [
+    "matplotlib>=3.3",
+    "numpy>=1.20",
+    "pandas>=1.4",
+    "scipy>=1.10.0",
+    "tqdm>=4.64.1"
+]
+dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/jc000222/Hero_Analysis.git"
+Reference = "https://apexlegendsstatus.com/"
+
+[tool.setuptools.packages.find]
+where = ["src",
+        "src.apex_analysis_package"]
