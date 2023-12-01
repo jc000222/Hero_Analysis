@@ -133,6 +133,12 @@ class Analyzer:
         plt.title("Percentage of SEX by Alignment")
 
     def GSM_Comic(self):
+        """
+        Analyzes the GSM of characters based on their gender distribution using a horizontal stacked bar chart.
+
+        Returns:
+        Displays a horizontal stacked bar chart indicating the percentage distribution of gender across different character alignments.
+        """
         # Filter the DataFrame to exclude 'Not GSM' values
         filtered_df = self.df[self.df["GSM"] != "Not GSM"]
 
@@ -153,9 +159,4 @@ class Analyzer:
         # Display the plot
         plt.xticks(rotation=25)  # Rotate x-axis labels for better readability
         plt.tight_layout()
-        plt.show()
-
-    def DCvsMarvel(self):
-        _, ax = plt.subplots(figsize=(14, 10))
-        sns.heatmap(self.df.corr(), annot=True, fmt=".2f", ax=ax)
         plt.show()
