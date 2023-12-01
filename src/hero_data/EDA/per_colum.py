@@ -1,10 +1,13 @@
 """ This python file is for EDA for each column in Hero analysis"""
-import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-class EDA_per_column:
+class EDA_Per_Column:
+    """
+    This class is for the single columns analysis in the EDA
+    """
+
     def __init__(self, df):
         """
         Initialize EDA_per_column class with a DataFrame.

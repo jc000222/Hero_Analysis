@@ -2,7 +2,7 @@
 from hero_data.Data_Sum.data_sum import Reader
 from hero_data.EDA.per_colum import EDA_per_column
 from hero_data.EDA.data_cleaning import Clean
-from hero_data.Inference.Infer import Analysis
+from hero_data.Infer import Analysis
 
 
 def main():

@@ -4,7 +4,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-class EDA_multi_column:
+class EDA_Multi_Column:
+    """
+    This class is for the multi columns analysis in the EDA
+    """
+
     def __init__(self, df):
         """
         Initialize the EDA_multi_column class with a DataFrame.
@@ -67,3 +71,9 @@ class EDA_multi_column:
 
         plt.tight_layout()
         plt.show()
+
+    def tm_imdb(self):
+        imdb_vs_tm = sns.lmplot(
+            data=self.df, x="imdb_rating", y="tomato_meter", hue="entity", height=7
+        )
+        imdb_vs_tm.set_axis_labels("IMDb Ratings", "Tomato meter Score")

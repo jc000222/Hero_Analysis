@@ -4,7 +4,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-class Analysis:
+class Analyzer:
+    """
+    This class is for analysis in the inference
+    """
+
     def __init__(self, df):
         """
         Initialize the Clean class with a DataFrame.
@@ -109,7 +113,7 @@ class Analysis:
         # We create a cross table
         filtered_df = self.df[self.df["SEX"] != "Unknown"]
 
-        AS = pd.crosstab(index=self.df["ALIGN"], columns=self.df["SEX"])
+        AS = pd.crosstab(index=filtered_df["ALIGN"], columns=filtered_df["SEX"])
 
         # Adding a column with the total
         AS["Total"] = AS.sum(axis=1)
@@ -149,4 +153,9 @@ class Analysis:
         # Display the plot
         plt.xticks(rotation=25)  # Rotate x-axis labels for better readability
         plt.tight_layout()
+        plt.show()
+
+    def DCvsMarvel(self):
+        _, ax = plt.subplots(figsize=(14, 10))
+        sns.heatmap(self.df.corr(), annot=True, fmt=".2f", ax=ax)
         plt.show()

@@ -5,7 +5,11 @@ import seaborn as sns
 import warnings
 
 
-class Clean:
+class Cleaner:
+    """
+    This class is for cleaning data in in the EDA
+    """
+
     def __init__(self, df):
         """
         Initialize the Clean class with a DataFrame.
