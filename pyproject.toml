@@ -10,7 +10,7 @@ authors = [
 maintainers = [
     {name = "Ruoyu Chen", email = "rchen2@mail.yu.edu"},
 ]
-description = "Hero analysis: project 1 & 3 for Analytics Programming"
+description = "Hero analysis: project 1 & 3 & 4 for Analytics Programming"
 readme = "README.md"
 keywords = ["data visualization", "Hero", "Analytics Programming"]
 license = {text = "MIT License"}
@@ -21,7 +21,7 @@ dependencies = [
     "pandas>=1.4",
     "seaborn>=0.13.0"
 ]
-dynamic = ["version"]
+version="3.0"
 [project.scripts]
 Hero_analysis = "hero_data.cli:main"
 
@@ -29,5 +29,4 @@ Hero_analysis = "hero_data.cli:main"
 Repository = "https://github.com/jc000222/Hero_Analysis.git"
 
 [tool.setuptools.packages.find]
-where = ["src",
-        "src.hero_analysis_package"]
+where = ["src"]

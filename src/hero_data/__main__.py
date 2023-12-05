@@ -1,10 +1,10 @@
-"""Enable running `python -m chip_analysis_package`."""
+"""Enable running `python -m """
 
-from hero_data.Data_Sum.data_sum import Reader
-from hero_data.EDA.per_colum import EDA_Per_Column
-from hero_data.EDA.data_cleaning import Cleaner
-from hero_data.Infer import Analyzer
-from src.hero_data.EDA.multi_coumun import EDA_Multi_Column
+from .Data_Sum.data_sum import Reader
+from .EDA.per_colum import EDA_Per_Column
+from .EDA.data_cleaning import Cleaner
+from .infer import Analyzer
+from .EDA.multi_coumun import EDA_Multi_Column
 
 
 def main():

@@ -62,9 +62,10 @@ class Cleaner:
         self.df["SEX"].fillna("Unknown", inplace=True)
         self.df["GSM"].fillna("Not GSM", inplace=True)
         self.df = self.df.dropna(subset=["ALIVE"])
-        self.df["APPEARANCES"].fillna(self.df["YEAR"], inplace=True)
-        self.df.dropna(subset=["APPEARANCES", "YEAR"], how="all", inplace=True)
+        # drop the hero that has no first appearance
         self.df = self.df.dropna(subset=["YEAR"])
+        # fill the appearance of the heroes that has a first appearance year but has no APPEARANCES times with 1 time.
+        self.df["APPEARANCES"].fillna(1, inplace=True)
         self.df["APPEARANCES"] = self.df["APPEARANCES"].astype(int)
         self.df["YEAR"] = self.df["YEAR"].astype(int)
         return self.df
