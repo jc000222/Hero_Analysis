@@ -3,17 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-import pandas as pd
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.impute import SimpleImputer
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import cross_val_score
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-
 
 class Analyzer:
     """
@@ -171,46 +160,3 @@ class Analyzer:
         plt.xticks(rotation=25)  # Rotate x-axis labels for better readability
         plt.tight_layout()
         plt.show()
-
-    def build_model1(self):
-        # load the LogisticRegression() function from sklearn's 'linear_model' sub-library
-
-        # Load your dataset (replace 'data' with your DataFrame)
-        predictors = ["ID", "ALIVE", "SEX", "YEAR", "APPEARANCES"]
-        target = ["ALIGN"]
-        self.df["SEX"] = (self.df["SEX"] == "Male Characters").astype(int)
-        self.df["ALIVE"] = (self.df["ALIVE"] == "Living Characters").astype(int)
-        self.df["ALIVE"] = (self.df["ALIGN"] == "Good Characters").astype(int)
-        self.df["ID"] = (self.df["ID"] == "Public Identity").astype(int)
-
-        X = self.df[predictors]
-        y = self.df[target]
-
-        X_train, X_test, y_train, y_test = train_test_split(
-            X, y, test_size=0.4, random_state=0
-        )
-        X_train = X_train.values
-        X_test = X_test.values
-        y_test = y_test.values
-        y_train = y_train.values
-        X_train
-        model = LogisticRegression()
-        model.fit(X_train, y_train)
-        model.score(X_train, y_train)
-        print(predictors)
-        print(model.coef_)
-        y_predict = model.predict(X_test)
-
-        # Assuming you have already trained your model and made predictions
-        # y_pred = model.predict(X_test)
-
-        # Compute evaluation metrics
-        accuracy = accuracy_score(y_test, y_predict)
-        precision = precision_score(y_test, y_predict, average="weighted")
-        recall = recall_score(y_test, y_predict, average="weighted")
-        f1 = f1_score(y_test, y_predict, average="weighted")
-
-        print("Accuracy:", accuracy)
-        print("Precision:", precision)
-        print("Recall:", recall)
-        print("F1 Score:", f1)
