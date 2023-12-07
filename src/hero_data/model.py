@@ -8,9 +8,14 @@ import numpy as np
 from sklearn.model_selection import cross_val_score
 import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.ticker as ticker
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, r2_score
+import seaborn as sns
 
 
-class ModelBuilder:
+class PipelineBuilder:
     """
     This class is to build, train, and visualize a logistic regression model for predicting 'ALIGN'.
 
@@ -30,7 +35,7 @@ class ModelBuilder:
 
     def __init__(self, df):
         """
-        Initialize the ModelBuilder class.
+        Initialize the PipelineBuilder class.
 
         Args:
         - df (DataFrame): Input DataFrame for modeling.
@@ -141,4 +146,114 @@ class ModelBuilder:
             axs[i].set_ylim(0, 1)  # Set y-axis range from 0 to 1
 
         plt.tight_layout()
+        plt.show()
+
+
+class ModelBuilder:
+    """
+    This class performs Polynomial Regression to predict movie gross based on IMDb ratings.
+
+    Attributes:
+    - df (DataFrame): Input DataFrame containing movie data.
+
+    Methods:
+    - movie_gross_polynomial: Perform Polynomial Regression and visualize the relationship between IMDb ratings and movie gross.
+    """
+
+    def __init__(self, df):
+        """
+        Initialize the ModelBuilder class.
+
+        Args:
+        - df (DataFrame): Input DataFrame containing movie data.
+        """
+        self.df = df
+
+    def movie_gross_polynomial(self):
+        """
+        Perform Polynomial Regression to predict movie gross based on IMDB ratings.
+
+        Returns:
+        Displays a scatter plot with the original data and the polynomial regression line.
+        """
+        predictors = ["imdb_rating"]
+        target = ["imdb_gross"]
+
+        X = self.df[predictors]
+        y = self.df[target]
+
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.4, random_state=0
+        )
+        self.y_test = y_test.values
+        poly = PolynomialFeatures(degree=2, include_bias=False)
+        X_train_poly = poly.fit_transform(X_train)
+        X_test_poly = poly.transform(X_test)
+
+        model = LinearRegression()
+        model.fit(X_train_poly, y_train)
+
+        y_predict = model.predict(X_test_poly)
+
+        mae = mean_absolute_error(y_test, y_predict)
+        r2 = r2_score(y_test, y_predict)
+        print("Polynomial Regression MAE:", mae)
+        print("Polynomial Regression R-squared:", r2)
+
+        # Use the original X values for plotting
+        X_values = X.values
+        X_values_sorted = np.sort(X_values, axis=0)
+        y_pred_sorted = model.predict(poly.transform(X_values_sorted))
+
+        plt.scatter(X_values, y, color="blue", label="Original data")
+
+        plt.plot(
+            X_values_sorted,
+            y_pred_sorted,
+            color="red",
+            label="Polynomial regression line (degree=2)",
+        )
+
+        plt.xlabel("imdb_rating")
+        plt.ylabel("imdb_gross")
+        plt.title("Polynomial Regression (degree=2)")
+        plt.legend()
+
+        plt.gca().yaxis.set_major_formatter(
+            ticker.FuncFormatter(lambda x, _: format(int(x), ","))
+        )
+        self.y_predict = y_predict
+
+        # Show plot
+        plt.show()
+
+    def accuracy(self):
+        y_test_1d = self.y_test.reshape(-1)
+        y_predict_1d = self.y_predict.reshape(-1)
+
+        # Create DataFrame with reshaped arrays
+        result_df = pd.DataFrame({"y_test": y_test_1d, "Predicted": y_predict_1d})
+
+        sns.scatterplot(x="y_test", y="Predicted", data=result_df, alpha=0.7, s=70)
+
+        # Add grid lines
+        plt.grid(True)
+
+        # Add a red dashed line for reference
+        plt.plot(
+            result_df["y_test"],
+            result_df["y_test"],
+            color="red",
+            linestyle="-",
+            label="Reference Line",
+        )
+
+        # Title and labels
+        plt.title("y_test vs Predicted Values")
+        plt.xlabel("y_test Values")
+        plt.ylabel("Predicted Values")
+
+        # Show legend
+        plt.legend()
+
         plt.show()
