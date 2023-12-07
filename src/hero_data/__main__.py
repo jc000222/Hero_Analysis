@@ -1,10 +1,10 @@
 """Enable running `python -m """
 
 from .Data_Sum.data_sum import Reader
-from .EDA.per_colum import EDA_Per_Column
+from .EDA.per_column import EDA_Per_Column
 from .EDA.data_cleaning import Cleaner
 from .infer import Analyzer
-from .EDA.multi_coumun import EDA_Multi_Column
+from .EDA.multi_column import EDA_Multi_Column
 
 
 def main():
