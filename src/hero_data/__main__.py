@@ -5,6 +5,7 @@ from .EDA.per_column import EDA_Per_Column
 from .EDA.data_cleaning import Cleaner
 from .infer import Analyzer
 from .EDA.multi_column import EDA_Multi_Column
+from .model import PipelineBuilder, ModelBuilder
 
 
 def main():
@@ -76,6 +77,16 @@ def main():
     analyzer_comic.GSM_Comic()
     analyzer_movie = Analyzer(df_movie)
     analyzer_movie.genre_analysis()
+    print("model___________________________________")
+
+    model_align = PipelineBuilder(df_comic)
+    pipeline = model_align.model_ALIGN()
+    model_align.coefficient()
+    model_align.chart()
+
+    movie_model = ModelBuilder(df_movie)
+    movie_model.movie_gross_polynomial()
+    movie_model.accuracy()
 
 
 main()

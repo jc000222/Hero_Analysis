@@ -143,7 +143,7 @@ class PipelineBuilder:
             axs[i].set_title(
                 f"Logistic Regression: {feature} vs Predicted probabilities"
             )
-            axs[i].set_ylim(0, 1)  # Set y-axis range from 0 to 1
+            axs[i].set_ylim(0, 1)
 
         plt.tight_layout()
         plt.show()
@@ -200,12 +200,11 @@ class ModelBuilder:
         print("Polynomial Regression MAE:", mae)
         print("Polynomial Regression R-squared:", r2)
 
-        # Use the original X values for plotting
         X_values = X.values
         X_values_sorted = np.sort(X_values, axis=0)
         y_pred_sorted = model.predict(poly.transform(X_values_sorted))
 
-        plt.scatter(X_values, y, color="blue", label="Original data")
+        plt.scatter(X_values, y, label="Original data")
 
         plt.plot(
             X_values_sorted,
@@ -228,18 +227,26 @@ class ModelBuilder:
         plt.show()
 
     def accuracy(self):
+        """
+        Create a scatter plot to visualize the comparison between predicted and actual values.
+
+        This method reshapes the arrays containing predicted and actual values, creates a DataFrame, and generates a
+        scatter plot to visualize how well the predictions align with the actual values. It also includes a reference
+        line to represent perfect predictions.
+
+        Returns:
+        Displays a scatter plot comparing 'y_test' values against 'Predicted' values.
+        """
+
         y_test_1d = self.y_test.reshape(-1)
         y_predict_1d = self.y_predict.reshape(-1)
 
-        # Create DataFrame with reshaped arrays
         result_df = pd.DataFrame({"y_test": y_test_1d, "Predicted": y_predict_1d})
 
-        sns.scatterplot(x="y_test", y="Predicted", data=result_df, alpha=0.7, s=70)
+        sns.scatterplot(x="y_test", y="Predicted", data=result_df, alpha=0.7)
 
-        # Add grid lines
         plt.grid(True)
 
-        # Add a red dashed line for reference
         plt.plot(
             result_df["y_test"],
             result_df["y_test"],
@@ -248,12 +255,10 @@ class ModelBuilder:
             label="Reference Line",
         )
 
-        # Title and labels
         plt.title("y_test vs Predicted Values")
         plt.xlabel("y_test Values")
         plt.ylabel("Predicted Values")
 
-        # Show legend
         plt.legend()
 
         plt.show()
