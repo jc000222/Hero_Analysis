@@ -1,4 +1,8 @@
-"""This python file do the EDA EDA_multi_column work for hero analysis"""
+"""
+Module Name: multi_column
+This python file do the EDA EDA_multi_column work for hero analysis
+Author: Ruoyu Chen
+"""
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns

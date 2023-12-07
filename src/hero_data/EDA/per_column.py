@@ -1,4 +1,8 @@
-""" This python file is for EDA for each column in Hero analysis"""
+"""
+Module Name: per_column
+This python file is for EDA for each column in Hero analysis
+Author: Ruoyu Chen
+"""
 import matplotlib.pyplot as plt
 import seaborn as sns
 

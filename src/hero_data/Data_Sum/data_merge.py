@@ -1,4 +1,8 @@
-"""This module is for merging data for data summary"""
+"""
+Module Name: data_merge
+This module is for merging data for data summary
+Author: Ruoyu Chen
+"""
 import pandas as pd
 
 

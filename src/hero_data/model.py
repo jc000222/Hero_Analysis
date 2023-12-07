@@ -1,18 +1,19 @@
-"""This module is for the model building part for hero analysis"""
+"""
+Module Name: model
+This module is for the model building part for hero analysis
+Author: Ruoyu Chen
+"""
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import OrdinalEncoder, PolynomialFeatures
 from sklearn.compose import ColumnTransformer
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-import numpy as np
-from sklearn.model_selection import cross_val_score
-import matplotlib.pyplot as plt
-import pandas as pd
-import matplotlib.ticker as ticker
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LogisticRegression, LinearRegression
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import mean_absolute_error, r2_score
+import matplotlib.ticker as ticker
 import seaborn as sns
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 class PipelineBuilder:

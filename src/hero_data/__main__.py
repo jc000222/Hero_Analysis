@@ -80,7 +80,7 @@ def main():
     print("model___________________________________")
 
     model_align = PipelineBuilder(df_comic)
-    pipeline = model_align.model_ALIGN()
+    model_align.model_ALIGN()
     model_align.coefficient()
     model_align.chart()
 

@@ -1,4 +1,8 @@
-"""This python file do the inference work for hero analysis"""
+"""
+Module Name: infer
+This python file do the inference work for hero analysis
+Author: Ruoyu Chen
+"""
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns

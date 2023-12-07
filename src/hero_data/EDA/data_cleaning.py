@@ -1,4 +1,8 @@
-"""This python file is for cleaning data in Hero analysis"""
+"""
+Module Name: data_cleaning
+This python file is for cleaning data in Hero analysis
+Author: Ruoyu Chen
+"""
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns

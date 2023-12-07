@@ -1,4 +1,8 @@
-"""This module is for reading data for data summary"""
+"""
+Module Name: data_sum
+This module is for reading data for data summary
+Author: Ruoyu Chen
+"""
 import pandas as pd
 
 
