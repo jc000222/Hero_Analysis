@@ -1,3 +1,4 @@
+"""This module is for merging data for data summary"""
 import pandas as pd
 
 
