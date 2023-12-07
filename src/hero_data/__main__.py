@@ -1,10 +1,10 @@
 """Enable running `python -m """
 
 from .Data_Sum.data_sum import Reader
-from .EDA.per_column import EDA_Per_Column
+from .EDA.per_column import EDAPerColumn
 from .EDA.data_cleaning import Cleaner
 from .infer import Analyzer
-from .EDA.multi_column import EDA_Multi_Column
+from .EDA.multi_column import EDAMultiColumn
 from .model import PipelineBuilder, ModelBuilder
 
 
@@ -39,12 +39,12 @@ def main():
     print(df_movie_raw.head())
 
     print("EDA________________________________________________________")
-    eda_comics = EDA_Per_Column(df_comic_raw)
+    eda_comics = EDAPerColumn(df_comic_raw)
     eda_comics.bar_chart("ALIGN")
     eda_comics.barh_chart("GSM")
-    eda_comics_m = EDA_Multi_Column(df_comic_raw)
+    eda_comics_m = EDAMultiColumn(df_comic_raw)
     eda_comics_m.bar_chart_m(["ALIVE", "ALIGN"])
-    eda_movies = EDA_Per_Column(df_movie_raw)
+    eda_movies = EDAPerColumn(df_movie_raw)
     eda_movies.boxplot_chart("runtime")
 
     print("EDA clean________________________________________________________")

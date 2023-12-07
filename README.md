@@ -10,3 +10,4 @@ in project4: 12/06/23
 6. fixed __main__.py
 7. delete all src
 8. fix formatting
+9. fix histograms numbers

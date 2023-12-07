@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-class EDA_Multi_Column:
+class EDAMultiColumn:
     """
     This class is for the multi columns analysis in the EDA
     """

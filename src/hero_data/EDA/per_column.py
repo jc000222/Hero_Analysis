@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-class EDA_Per_Column:
+class EDAPerColumn:
     """
     This class is for the single columns analysis in the EDA
     """
@@ -141,18 +141,30 @@ class EDA_Per_Column:
 
         # Adding labels to the bars for Matplotlib
         for i in range(len(hist)):
-            ax1.text(bins[i] + 0.5, hist[i], str(int(hist[i])))
+            bar_height = hist[i]
+            bar_center = bins[i] + (bins[i + 1] - bins[i]) / 2
+            ax1.text(
+                bar_center,
+                bar_height,
+                str(int(bar_height)),
+                ha="center",
+                va="bottom",
+            )
 
         # Seaborn histogram plot
         sns.histplot(data=self.df, x=column, bins=10, kde=False, ax=ax2)
         ax2.set_title(f"Histogram of {column} (Seaborn)")
+
+        # Adding labels to the bars for Seaborn
         for i in range(len(hist)):
+            bar_height = hist[i]
+            bar_center = bins[i] + (bins[i + 1] - bins[i]) / 2
             ax2.text(
-                bins[i] + 0.5,
-                hist[i],
-                str(int(hist[i])),
-                ha="left",
-                va="center",
+                bar_center,
+                bar_height,
+                str(int(bar_height)),
+                ha="center",
+                va="bottom",
                 fontsize=8,
             )
 

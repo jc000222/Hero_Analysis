@@ -100,6 +100,7 @@ class Analyzer:
         plt.title("Average Ratings and Movie Count per Genre")
         plt.xlabel("Genre")
         plt.ylabel("Movie Count")
+
         plt.tight_layout()
         plt.show()
 
@@ -126,11 +127,14 @@ class Analyzer:
         sns.set(style="white")
 
         # Define data and transpose the cross tab so that the application mode is in the X axis
-        AS_normalized.T.plot(kind="barh", stacked=True)
+        ax = AS_normalized.T.plot(kind="barh", stacked=True)
 
         # Title and label
         plt.xlabel("Percentage of Alignment")
         plt.title("Percentage of SEX by Alignment")
+
+        # Move legend outside the plot
+        plt.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
 
     def GSM_Comic(self):
         """
